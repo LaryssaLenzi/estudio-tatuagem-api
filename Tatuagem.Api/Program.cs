@@ -52,9 +52,20 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // CORS
-var origens = builder.Configuration["Cors:Origens"] ?? "http://localhost:5173";
+// CORS
+var origens = builder.Configuration["Cors:Origens"] ?? "http://localhost:5173,https://laryssalenzi.github.io";
 var listaOrigens = origens.Split(',', StringSplitOptions.RemoveEmptyEntries);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins(listaOrigens)
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .WithExposedHeaders("Location");
+    });
+});
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
