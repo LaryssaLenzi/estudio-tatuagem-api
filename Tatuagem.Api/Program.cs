@@ -23,6 +23,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Injeção de Dependência dos Serviços
 builder.Services.AddScoped<AuthServico>();
 builder.Services.AddScoped<TatuadorServico>();
+builder.Services.AddScoped<SessaoServico>();
 
 // Health Checks
 builder.Services.AddHealthChecks().AddDbContextCheck<AppDbContext>();
