@@ -4,6 +4,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using System.Text;
 using Tatuagem.Api.Dados;
+using Tatuagem.Api.Modelos;
+using Tatuagem.Api.Servicos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,9 @@ if (string.IsNullOrWhiteSpace(connectionString))
 // Entity Framework Core com PostgreSQL (Npgsql)
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
+
+// Injeção de Dependência dos Serviços
+builder.Services.AddScoped<AuthServico>();
 
 // Health Checks
 builder.Services.AddHealthChecks().AddDbContextCheck<AppDbContext>();
@@ -115,6 +120,43 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     await db.Database.MigrateAsync();
+
+    // Seed Idempotente
+    var adminSenha = builder.Configuration["Seed:AdminSenha"] ?? "Admin@2026";
+    if (!await db.Usuarios.AnyAsync(u => u.Email == "admin@estudio.com"))
+    {
+        db.Usuarios.Add(new Usuario
+        {
+            Nome = "Administrador",
+            Email = "admin@estudio.com",
+            SenhaHash = BCrypt.Net.BCrypt.HashPassword(adminSenha),
+            Papel = "admin"
+        });
+    }
+
+    if (!await db.Usuarios.AnyAsync(u => u.Email == "cliente1@exemplo.com"))
+    {
+        db.Usuarios.Add(new Usuario
+        {
+            Nome = "Cliente Um",
+            Email = "cliente1@exemplo.com",
+            SenhaHash = BCrypt.Net.BCrypt.HashPassword("Cliente123!"),
+            Papel = "cliente"
+        });
+    }
+
+    if (!await db.Usuarios.AnyAsync(u => u.Email == "cliente2@exemplo.com"))
+    {
+        db.Usuarios.Add(new Usuario
+        {
+            Nome = "Cliente Dois",
+            Email = "cliente2@exemplo.com",
+            SenhaHash = BCrypt.Net.BCrypt.HashPassword("Cliente123!"),
+            Papel = "cliente"
+        });
+    }
+
+    await db.SaveChangesAsync();
 }
 
 app.Run();
