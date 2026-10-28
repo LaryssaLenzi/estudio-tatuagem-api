@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estúdio de Tatuagem - Agendamento</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🎨 Estúdio de Tatuagem</h1>
+        <p>Agendamento de Sessões & Portfólio de Tatuadores</p>
+    </header>
+
+    <!-- Sessão de Login -->
+    <div class="card" id="loginCard">
+        <h2>🔑 Entrar no Sistema</h2>
+        <div class="grid">
+            <div>
+                <label>E-mail:</label>
+                <input type="email" id="loginEmail" value="cliente1@exemplo.com">
+            </div>
+            <div>
+                <label>Senha:</label>
+                <input type="password" id="loginSenha" value="Cliente123!">
+            </div>
+        </div>
+        <button onclick="fazerLogin()">Fazer Login</button>
+        <div id="loginMsg" class="status-msg"></div>
+    </div>
+
+    <!-- Lista de Tatuadores -->
+    <div class="card">
+        <h2>👨‍🎨 Tatuadores Disponíveis</h2>
+        <div id="listaTatuadores" class="grid">Carregando tatuadores...</div>
+    </div>
+
+    <!-- Formulário de Agendamento (Sessão) -->
+    <div class="card">
+        <h2>📅 Agendar Nova Sessão</h2>
+        <label>Selecione o Tatuador:</label>
+        <select id="selectTatuador"></select>
+
+        <label>Data e Hora:</label>
+        <input type="datetime-local" id="dataHoraSessao">
+
+        <label>Descrição da Tatuagem:</label>
+        <textarea id="descricaoSessao" rows="3" placeholder="Ex: Dragão oriental no antebraço direito"></textarea>
+
+        <button onclick="agendarSessao()">Agendar Sessão</button>
+        <div id="agendamentoMsg" class="status-msg"></div>
+    </div>
+</div>
+
+<script>
+    const API_URL = "https://estudio-tatuagem-api.onrender.com";
+    let token = "";
+
+    // Carrega a lista pública de tatuadores ao abrir a página
+    async function carregarTatuadores() {
+        try {
+            const res = await fetch(`${API_URL}/api/tatuadores?tamanho=20`);
+            const data = await res.json();
+            
+            const container = document.getElementById("listaTatuadores");
+            const select = document.getElementById("selectTatuador");
+            
+            container.innerHTML = "";
+            select.innerHTML = "";
+
+            data.itens.forEach(t => {
+                container.innerHTML += `
+                    <div class="tatuador-item">
+                        <h3>${t.nome}</h3>
+                        <p><strong>Estilo:</strong> ${t.estiloPrincipal}</p>
+                        <p><strong>Mínimo:</strong> R$ ${t.precoMinimo.toFixed(2)}</p>
+                    </div>
+                `;
+
+                select.innerHTML += `<option value="${t.id}">${t.nome} (${t.estiloPrincipal})</option>`;
+            });
+        } catch (err) {
+            document.getElementById("listaTatuadores").innerHTML = "<p>Erro ao carregar tatuadores.</p>";
+        }
+    }
+
+    async function fazerLogin() {
+        const email = document.getElementById("loginEmail").value;
+        const senha = document.getElementById("loginSenha").value;
+        const msgDiv = document.getElementById("loginMsg");
+
+        try {
+            const res = await fetch(`${API_URL}/api/auth/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, senha })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                token = data.token;
+                msgDiv.className = "status-msg status-success";
+                msgDiv.innerText = `Login realizado com sucesso! Bem-vindo(a), ${data.nome}`;
+                msgDiv.style.display = "block";
+            } else {
+                msgDiv.className = "status-msg status-error";
+                msgDiv.innerText = data.detail || "Falha no login.";
+                msgDiv.style.display = "block";
+            }
+        } catch (err) {
+            msgDiv.className = "status-msg status-error";
+            msgDiv.innerText = "Erro ao conectar com a API.";
+            msgDiv.style.display = "block";
+        }
+    }
+
+    async function agendarSessao() {
+        const msgDiv = document.getElementById("agendamentoMsg");
+
+        if (!token) {
+            msgDiv.className = "status-msg status-error";
+            msgDiv.innerText = "Você precisa fazer login primeiro!";
+            msgDiv.style.display = "block";
+            return;
+        }
+
+        const tatuadorId = parseInt(document.getElementById("selectTatuador").value);
+        const dataHoraInput = document.getElementById("dataHoraSessao").value;
+        const descricaoTatuagem = document.getElementById("descricaoSessao").value;
+
+        if (!dataHoraInput || !descricaoTatuagem) {
+            msgDiv.className = "status-msg status-error";
+            msgDiv.innerText = "Preencha a data/hora e a descrição!";
+            msgDiv.style.display = "block";
+            return;
+        }
+
+        const dataHora = new Date(dataHoraInput).toISOString();
+
+        try {
+            const res = await fetch(`${API_URL}/api/sessoes`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ tatuadorId, dataHora, descricaoTatuagem })
+            });
+
+            const data = await res.json();
+
+            if (res.status === 201) {
+                msgDiv.className = "status-msg status-success";
+                msgDiv.innerText = "Sessão agendada com sucesso!";
+                msgDiv.style.display = "block";
+            } else if (res.status === 409) {
+                msgDiv.className = "status-msg status-error";
+                msgDiv.innerText = `Erro 409 (Conflito): ${data.detail}`;
+                msgDiv.style.display = "block";
+            } else {
+                msgDiv.className = "status-msg status-error";
+                msgDiv.innerText = data.detail || "Erro ao agendar.";
+                msgDiv.style.display = "block";
+            }
+        } catch (err) {
+            msgDiv.className = "status-msg status-error";
+            msgDiv.innerText = "Erro na requisição.";
+            msgDiv.style.display = "block";
+        }
+    }
+
+    carregarTatuadores();
+</script>
+
+</body>
+</html>
