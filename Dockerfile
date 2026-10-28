@@ -2,7 +2,6 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 COPY ["Tatuagem.Api/Tatuagem.Api.csproj", "Tatuagem.Api/"]
-COPY ["Tatuagem.Testes/Tatuagem.Testes.csproj", "Tatuagem.Testes/"]
 RUN dotnet restore "Tatuagem.Api/Tatuagem.Api.csproj"
 
 COPY . .
