@@ -22,6 +22,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Injeção de Dependência dos Serviços
 builder.Services.AddScoped<AuthServico>();
+builder.Services.AddScoped<TatuadorServico>();
 
 // Health Checks
 builder.Services.AddHealthChecks().AddDbContextCheck<AppDbContext>();
@@ -121,7 +122,7 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     await db.Database.MigrateAsync();
 
-    // Seed Idempotente
+    // Seed Idempotente de Usuários
     var adminSenha = builder.Configuration["Seed:AdminSenha"] ?? "Admin@2026";
     if (!await db.Usuarios.AnyAsync(u => u.Email == "admin@estudio.com"))
     {
@@ -154,6 +155,21 @@ using (var scope = app.Services.CreateScope())
             SenhaHash = BCrypt.Net.BCrypt.HashPassword("Cliente123!"),
             Papel = "cliente"
         });
+    }
+
+    // Seed Idempotente de Tatuadores Realistas (8+)
+    if (!await db.Tatuadores.AnyAsync())
+    {
+        db.Tatuadores.AddRange(
+            new Tatuador { Nome = "Lucas Andrade", EstiloPrincipal = "Realismo Black & Grey", PrecoMinimo = 350.00m },
+            new Tatuador { Nome = "Camila Torres", EstiloPrincipal = "Aquarela & Fineline", PrecoMinimo = 250.00m },
+            new Tatuador { Nome = "Diego 'Caveira' Martins", EstiloPrincipal = "Old School / Tradicional", PrecoMinimo = 300.00m },
+            new Tatuador { Nome = "Juliana Neves", EstiloPrincipal = "Botanico & Geométrico", PrecoMinimo = 280.00m },
+            new Tatuador { Nome = "Rafael 'Kuro' Silva", EstiloPrincipal = "Irezumi / Oriental", PrecoMinimo = 400.00m },
+            new Tatuador { Nome = "Mariana Costa", EstiloPrincipal = "Microrealismo & Pontilhismo", PrecoMinimo = 320.00m },
+            new Tatuador { Nome = "Bruno 'Viking' Santos", EstiloPrincipal = "Neotradicional & Tribal", PrecoMinimo = 300.00m },
+            new Tatuador { Nome = "Beatriz Lima", EstiloPrincipal = "Lettering & Chicano", PrecoMinimo = 220.00m }
+        );
     }
 
     await db.SaveChangesAsync();
