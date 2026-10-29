@@ -1,90 +1,41 @@
- :root {
-            --bg-color: #121214;
-            --card-bg: #202024;
-            --primary: #00875f;
-            --primary-hover: #00b37e;
-            --text: #e1e1e6;
-            --text-secondary: #a8a8b3;
-            --danger: #f75a68;
-        }
+body {
+    background-color: #0b0b0d;
+    color: #e1e1e6;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.font-title {
+    font-family: 'Cinzel', serif;
+}
 
-        .container {
-            max-width: 900px;
-            width: 100%;
-        }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
 
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #29292e;
-            padding-bottom: 15px;
-        }
+::-webkit-scrollbar-track {
+    background: #0b0b0d;
+}
 
-        h1 { color: var(--primary-hover); margin: 0; }
-        p { color: var(--text-secondary); }
+::-webkit-scrollbar-thumb {
+    background: #26262b;
+    border-radius: 4px;
+}
 
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
+::-webkit-scrollbar-thumb:hover {
+    background: #d4af37;
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
+.gold-gradient-text {
+    background: linear-gradient(135deg, #fff 0%, #f3c65e 50%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-        input, select, button, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            margin-bottom: 12px;
-            border-radius: 6px;
-            border: 1px solid #29292e;
-            background: #121214;
-            color: #fff;
-            box-sizing: border-box;
-        }
+.gold-border-glow {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+}
 
-        button {
-            background-color: var(--primary);
-            color: white;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        button:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .tatuador-item {
-            border: 1px solid #29292e;
-            padding: 15px;
-            border-radius: 6px;
-            background: #121214;
-        }
-
-        .status-msg {
-            padding: 12px;
-            border-radius: 6px;
-            margin-top: 10px;
-            display: none;
-        }
-        .status-success { background: #122c22; color: #00b37e; border: 1px solid #00875f; }
-        .status-error { background: #2d1316; color: #f75a68; border: 1px solid #f75a68; }
+.gold-border-glow:hover {
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+}
