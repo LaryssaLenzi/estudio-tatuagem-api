@@ -169,6 +169,79 @@ function logout() {
     localStorage.removeItem('tattoo_user');
     initAuthUI();
     showNotification('Sessão Encerrada', 'Você saiu da sua conta.', 'info');
+}// Função de Logout reativa
+function fazerLogout() {
+    // 1. Limpa as credenciais/tokens salvas
+    token = "";
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+
+    // 2. Limpa e atualiza automaticamente a área da agenda/sessões
+    const containerSessoes = document.getElementById("listaSessoes");
+    if (containerSessoes) {
+        containerSessoes.innerHTML = "<p>Faça login para visualizar suas sessões.</p>";
+    }
+
+    // 3. Oculta ou limpa o painel de perfil se estiver aberto
+    const painelPerfil = document.getElementById("painelPerfil");
+    if (painelPerfil) {
+        painelPerfil.style.display = "none";
+    }
+
+    // 4. Atualiza os botões do cabeçalho
+    atualizarHeader();
+    
+    // Notifica o usuário sem precisar de recarregar a página
+    exibirMensagem("authMsg", "Você saiu da conta.", "success");
+}
+
+// Função para Alterar a Senha do Usuário Logado
+async function alterarSenha() {
+    const msgDiv = document.getElementById("perfilMsg");
+    const senhaAtual = document.getElementById("senhaAtual").value;
+    const novaSenha = document.getElementById("novaSenha").value;
+
+    if (!token) {
+        exibirMensagem("perfilMsg", "Sessão expirada. Faça login novamente.", "error");
+        return;
+    }
+
+    if (!senhaAtual || !novaSenha) {
+        exibirMensagem("perfilMsg", "Preencha a senha atual e a nova senha!", "error");
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_URL}/api/usuarios/me/senha`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ senhaAtual, novaSenha })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            exibirMensagem("perfilMsg", "Senha alterada com sucesso!", "success");
+            document.getElementById("senhaAtual").value = "";
+            document.getElementById("novaSenha").value = "";
+        } else {
+            exibirMensagem("perfilMsg", data.detail || "Erro ao alterar a senha.", "error");
+        }
+    } catch (err) {
+        exibirMensagem("perfilMsg", "Erro de conexão ao alterar a senha.", "error");
+    }
+}
+
+// Função auxiliar para exibir mensagens de status de forma limpa
+function exibirMensagem(elementId, mensagem, tipo) {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    el.className = `status-msg status-${tipo}`;
+    el.innerText = mensagem;
+    el.style.display = "block";
 }
 
 // --- CARREGAR E FILTRAR TATUADORES ---

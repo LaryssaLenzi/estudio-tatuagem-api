@@ -62,6 +62,30 @@ public class AuthServico
         return Resultado<LoginResponseDto>.Ok(new LoginResponseDto(token, usuario.Nome, usuario.Email, usuario.Papel));
     }
 
+    public async Task<Resultado<bool>> AlterarSenhaAsync(int usuarioId, AlterarSenhaDto dto)
+    {
+        var usuario = await _db.Usuarios.FindAsync(usuarioId);
+
+        if (usuario == null)
+        {
+            _logger.LogWarning("Tentativa de alteração de senha para usuário inexistente ID: {Id}", usuarioId);
+            return Resultado<bool>.Falha(TipoErro.NaoEncontrado, "Usuário não encontrado.");
+        }
+
+        if (!BCrypt.Net.BCrypt.Verify(dto.SenhaAtual, usuario.SenhaHash))
+        {
+            _logger.LogWarning("Tentativa de alteração de senha com senha atual incorreta para o e-mail: {Email}", usuario.Email);
+            return Resultado<bool>.Falha(TipoErro.Validacao, "A senha atual informada está incorreta.");
+        }
+
+        usuario.SenhaHash = BCrypt.Net.BCrypt.HashPassword(dto.NovaSenha);
+        await _db.SaveChangesAsync();
+
+        _logger.LogInformation("Senha alterada com sucesso para o usuário: {Email}", usuario.Email);
+
+        return Resultado<bool>.Ok(true);
+    }
+
     private string GerarTokenJwt(Usuario usuario)
     {
         var jwtSegredo = _config["Jwt:Segredo"] ?? "chave-secreta-padrao-com-mais-de-32-caracteres-para-dev";

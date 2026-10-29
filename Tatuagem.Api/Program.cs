@@ -51,7 +51,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// CORS
+
 // CORS
 var origens = builder.Configuration["Cors:Origens"] ?? "http://localhost:5173,https://laryssalenzi.github.io";
 var listaOrigens = origens.Split(',', StringSplitOptions.RemoveEmptyEntries);
@@ -66,16 +66,7 @@ builder.Services.AddCors(options =>
               .WithExposedHeaders("Location");
     });
 });
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policy =>
-    {
-        policy.WithOrigins(listaOrigens)
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .WithExposedHeaders("Location");
-    });
-});
+
 
 // Swagger (Swashbuckle 10 / OpenAPI .NET 2.x)
 builder.Services.AddEndpointsApiExplorer();

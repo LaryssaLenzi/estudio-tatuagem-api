@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,17 +10,21 @@
     <!-- Fontes Google - Cinzel e Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <!-- FontAwesome para Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="script/script-fron.js"></script>
 
 </head>
+
 <body class="min-h-screen flex flex-col justify-between antialiased selection:bg-gold-500 selection:text-black">
 
     <!-- BANNER DE STATUS DA API (ALERTING RENDER SPIN-UP) -->
-    <div id="apiStatusBanner" class="hidden bg-gold-500/10 border-b border-gold-500/30 text-gold-400 px-4 py-2 text-xs sm:text-sm text-center fixed top-0 left-0 right-0 z-50 backdrop-blur-md">
+    <div id="apiStatusBanner"
+        class="hidden bg-gold-500/10 border-b border-gold-500/30 text-gold-400 px-4 py-2 text-xs sm:text-sm text-center fixed top-0 left-0 right-0 z-50 backdrop-blur-md">
         <i class="fa-solid fa-spinner fa-spin mr-2"></i>
         <span>Iniciando servidor na nuvem (a primeira requisição pode levar cerca de 40s). Por favor, aguarde...</span>
     </div>
@@ -29,11 +34,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Logo -->
             <a href="#inicio" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-black font-bold text-xl shadow-lg group-hover:scale-105 transition-transform">
+                <div
+                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-black font-bold text-xl shadow-lg group-hover:scale-105 transition-transform">
                     <i class="fa-solid fa-dragon"></i>
                 </div>
                 <div>
-                    <span class="font-title text-xl font-bold tracking-wider gold-gradient-text block leading-none">INK & ART</span>
+                    <span class="font-title text-xl font-bold tracking-wider gold-gradient-text block leading-none">INK
+                        & ART</span>
                     <span class="text-[10px] tracking-widest text-gray-400 uppercase">Tattoo & Piercing Studio</span>
                 </div>
             </a>
@@ -44,48 +51,60 @@
                 <a href="#estilos" class="hover:text-gold-400 transition-colors">Estilos</a>
                 <a href="#tatuadores" class="hover:text-gold-400 transition-colors">Tatuadores</a>
                 <a href="#agendamento" class="hover:text-gold-400 transition-colors">Agendamento</a>
-                <a href="#meus-agendamentos" id="navLinkMeusAgendamentos" class="hidden hover:text-gold-400 transition-colors">Minhas Sessões</a>
+                <a href="#meus-agendamentos" id="navLinkMeusAgendamentos"
+                    class="hidden hover:text-gold-400 transition-colors">Minhas Sessões</a>
             </div>
 
             <!-- Botão Login/User Profile -->
             <div class="hidden md:flex items-center gap-4">
-                <div id="navUserLogged" class="hidden items-center gap-3 bg-darkCard border border-darkBorder px-3 py-1.5 rounded-full">
-                    <div class="w-8 h-8 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center text-xs font-bold border border-gold-500/40" id="userAvatar">
+                <div id="navUserLogged"
+                    class="hidden items-center gap-3 bg-darkCard border border-darkBorder px-3 py-1.5 rounded-full">
+                    <div class="w-8 h-8 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center text-xs font-bold border border-gold-500/40"
+                        id="userAvatar">
                         U
                     </div>
                     <div class="text-xs">
                         <p class="font-semibold text-white leading-tight" id="userName">Usuário</p>
                         <span class="text-[10px] text-gold-400 uppercase font-semibold" id="userRole">Cliente</span>
                     </div>
-                    <button onclick="logout()" title="Sair da Conta" class="ml-2 text-gray-400 hover:text-red-400 transition-colors">
+                    <button onclick="logout()" title="Sair da Conta"
+                        class="ml-2 text-gray-400 hover:text-red-400 transition-colors">
                         <i class="fa-solid fa-right-from-bracket"></i>
                     </button>
                 </div>
 
-                <button id="btnOpenAuthNav" onclick="openAuthModal('login')" class="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-semibold text-sm px-5 py-2.5 rounded-lg shadow-md hover:shadow-gold-500/20 transition-all flex items-center gap-2">
+                <button id="btnOpenAuthNav" onclick="openAuthModal('login')"
+                    class="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-semibold text-sm px-5 py-2.5 rounded-lg shadow-md hover:shadow-gold-500/20 transition-all flex items-center gap-2">
                     <i class="fa-solid fa-user-lock"></i>
                     <span>Entrar / Cadastrar</span>
                 </button>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none">
+            <button onclick="toggleMobileMenu()"
+                class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
 
         <!-- Mobile Menu Container -->
         <div id="mobileMenu" class="hidden md:hidden bg-darkCard border-b border-darkBorder px-4 py-4 space-y-3">
-            <a href="#inicio" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 font-medium">Início</a>
-            <a href="#estilos" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 font-medium">Estilos</a>
-            <a href="#tatuadores" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 font-medium">Tatuadores</a>
-            <a href="#agendamento" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 font-medium">Agendamento</a>
-            <a href="#meus-agendamentos" id="mobileLinkMeusAgendamentos" onclick="toggleMobileMenu()" class="hidden block text-gray-300 hover:text-gold-400 font-medium">Minhas Sessões</a>
-            
+            <a href="#inicio" onclick="toggleMobileMenu()"
+                class="block text-gray-300 hover:text-gold-400 font-medium">Início</a>
+            <a href="#estilos" onclick="toggleMobileMenu()"
+                class="block text-gray-300 hover:text-gold-400 font-medium">Estilos</a>
+            <a href="#tatuadores" onclick="toggleMobileMenu()"
+                class="block text-gray-300 hover:text-gold-400 font-medium">Tatuadores</a>
+            <a href="#agendamento" onclick="toggleMobileMenu()"
+                class="block text-gray-300 hover:text-gold-400 font-medium">Agendamento</a>
+            <a href="#meus-agendamentos" id="mobileLinkMeusAgendamentos" onclick="toggleMobileMenu()"
+                class="hidden block text-gray-300 hover:text-gold-400 font-medium">Minhas Sessões</a>
+
             <div class="pt-3 border-t border-darkBorder">
                 <div id="mobileUserLogged" class="hidden items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold text-xs" id="mobileUserAvatar">U</div>
+                        <div class="w-8 h-8 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold text-xs"
+                            id="mobileUserAvatar">U</div>
                         <div>
                             <p class="text-sm font-semibold text-white" id="mobileUserName">Usuário</p>
                             <span class="text-xs text-gold-400" id="mobileUserRole">Cliente</span>
@@ -93,7 +112,8 @@
                     </div>
                     <button onclick="logout()" class="text-red-400 text-sm font-medium">Sair</button>
                 </div>
-                <button id="mobileBtnAuth" onclick="toggleMobileMenu(); openAuthModal('login')" class="w-full mt-2 bg-gold-500 text-black font-semibold text-sm py-2.5 rounded-lg">
+                <button id="mobileBtnAuth" onclick="toggleMobileMenu(); openAuthModal('login')"
+                    class="w-full mt-2 bg-gold-500 text-black font-semibold text-sm py-2.5 rounded-lg">
                     Entrar / Cadastrar
                 </button>
             </div>
@@ -102,28 +122,34 @@
 
     <!-- MAIN CONTENT -->
     <main class="flex-grow">
-        
+
         <!-- HERO SECTION -->
         <section id="inicio" class="relative py-20 lg:py-32 overflow-hidden border-b border-darkBorder">
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gold-500/10 via-darkBg to-darkBg -z-10"></div>
-            
+            <div
+                class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gold-500/10 via-darkBg to-darkBg -z-10">
+            </div>
+
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div class="space-y-6 text-center lg:text-left">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold tracking-wider uppercase">
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold tracking-wider uppercase">
                             <i class="fa-solid fa-award"></i> Estúdio Premium de Tatuagem
                         </div>
                         <h1 class="font-title text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
                             ARTE NA PELE COM <span class="gold-gradient-text">PRECISÃO & ESTILO</span>
                         </h1>
                         <p class="text-gray-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0">
-                            Transformamos ideias e histórias em traços eternos. Artistas especializados em diversos estilos em um ambiente seguro, privado e moderno.
+                            Transformamos ideias e histórias em traços eternos. Artistas especializados em diversos
+                            estilos em um ambiente seguro, privado e moderno.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
-                            <a href="#tatuadores" class="bg-gold-500 hover:bg-gold-400 text-black font-bold px-8 py-3.5 rounded-lg shadow-lg hover:shadow-gold-500/20 transition-all text-center">
+                            <a href="#tatuadores"
+                                class="bg-gold-500 hover:bg-gold-400 text-black font-bold px-8 py-3.5 rounded-lg shadow-lg hover:shadow-gold-500/20 transition-all text-center">
                                 Conhecer Tatuadores
                             </a>
-                            <a href="#agendamento" class="bg-darkCard hover:bg-darkBorder border border-darkBorder text-white font-semibold px-8 py-3.5 rounded-lg transition-all text-center">
+                            <a href="#agendamento"
+                                class="bg-darkCard hover:bg-darkBorder border border-darkBorder text-white font-semibold px-8 py-3.5 rounded-lg transition-all text-center">
                                 Agendar Sessão
                             </a>
                         </div>
@@ -146,15 +172,20 @@
 
                     <!-- Imagem Hero Visual -->
                     <div class="relative flex justify-center">
-                        <div class="w-full max-w-md h-96 sm:h-[450px] rounded-2xl bg-gradient-to-tr from-gold-500/20 to-transparent p-1 shadow-2xl gold-border-glow">
-                            <div class="w-full h-full rounded-2xl bg-darkCard overflow-hidden relative flex flex-col justify-between p-6 bg-[url('https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&q=80')] bg-cover bg-center">
-                                <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-darkBg/60 to-transparent"></div>
+                        <div
+                            class="w-full max-w-md h-96 sm:h-[450px] rounded-2xl bg-gradient-to-tr from-gold-500/20 to-transparent p-1 shadow-2xl gold-border-glow">
+                            <div
+                                class="w-full h-full rounded-2xl bg-darkCard overflow-hidden relative flex flex-col justify-between p-6 bg-[url('https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&q=80')] bg-cover bg-center">
+                                <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-darkBg/60 to-transparent">
+                                </div>
                                 <div class="relative z-10 flex justify-between items-start">
-                                    <span class="bg-black/60 backdrop-blur-md px-3 py-1 rounded-md text-xs font-semibold text-gold-400 border border-gold-500/30">Exclusividade</span>
+                                    <span
+                                        class="bg-black/60 backdrop-blur-md px-3 py-1 rounded-md text-xs font-semibold text-gold-400 border border-gold-500/30">Exclusividade</span>
                                 </div>
                                 <div class="relative z-10 space-y-1">
                                     <h3 class="font-title text-xl font-bold text-white">Traços Sob Medida</h3>
-                                    <p class="text-xs text-gray-300">Cada projeto é desenhado exclusivamente para o seu corpo.</p>
+                                    <p class="text-xs text-gray-300">Cada projeto é desenhado exclusivamente para o seu
+                                        corpo.</p>
                                 </div>
                             </div>
                         </div>
@@ -169,44 +200,57 @@
                 <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
                     <span class="text-gold-400 text-xs font-bold uppercase tracking-widest">Guia de Estilos</span>
                     <h2 class="font-title text-3xl sm:text-4xl font-extrabold">Descubra Seu Estilo Ideal</h2>
-                    <p class="text-gray-400 text-sm">Conheça as principais vertentes da arte na pele aplicadas pelos nossos residentes.</p>
+                    <p class="text-gray-400 text-sm">Conheça as principais vertentes da arte na pele aplicadas pelos
+                        nossos residentes.</p>
                 </div>
 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <!-- Style Card 1 -->
-                    <div class="bg-darkCard border border-darkBorder rounded-xl p-6 hover:border-gold-500/50 transition-all group">
-                        <div class="w-12 h-12 rounded-lg bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <div
+                        class="bg-darkCard border border-darkBorder rounded-xl p-6 hover:border-gold-500/50 transition-all group">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-eye"></i>
                         </div>
                         <h3 class="font-title text-lg font-bold text-white mb-2">Realismo & Sombreado</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Reprodução fiel de fotografias, retratos e elementos tridimensionais com variações suaves de preto e cinza.</p>
+                        <p class="text-xs text-gray-400 leading-relaxed">Reprodução fiel de fotografias, retratos e
+                            elementos tridimensionais com variações suaves de preto e cinza.</p>
                     </div>
 
                     <!-- Style Card 2 -->
-                    <div class="bg-darkCard border border-darkBorder rounded-xl p-6 hover:border-gold-500/50 transition-all group">
-                        <div class="w-12 h-12 rounded-lg bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <div
+                        class="bg-darkCard border border-darkBorder rounded-xl p-6 hover:border-gold-500/50 transition-all group">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-pen-nib"></i>
                         </div>
                         <h3 class="font-title text-lg font-bold text-white mb-2">Fineline & Botânico</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Agulhas ultra-finas para criar traços extremamente delicados, florais sutis, escritas marcantes e traços minimalistas.</p>
+                        <p class="text-xs text-gray-400 leading-relaxed">Agulhas ultra-finas para criar traços
+                            extremamente delicados, florais sutis, escritas marcantes e traços minimalistas.</p>
                     </div>
 
                     <!-- Style Card 3 -->
-                    <div class="bg-darkCard border border-darkBorder rounded-xl p-6 hover:border-gold-500/50 transition-all group">
-                        <div class="w-12 h-12 rounded-lg bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <div
+                        class="bg-darkCard border border-darkBorder rounded-xl p-6 hover:border-gold-500/50 transition-all group">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-anchor"></i>
                         </div>
                         <h3 class="font-title text-lg font-bold text-white mb-2">Old School & Neotrad</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Contornos pretos marcantes, paleta de cores sólida clássica e temas tradicionais como adagas, âncoras e rosas.</p>
+                        <p class="text-xs text-gray-400 leading-relaxed">Contornos pretos marcantes, paleta de cores
+                            sólida clássica e temas tradicionais como adagas, âncoras e rosas.</p>
                     </div>
 
                     <!-- Style Card 4 -->
-                    <div class="bg-darkCard border border-darkBorder rounded-xl p-6 hover:border-gold-500/50 transition-all group">
-                        <div class="w-12 h-12 rounded-lg bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                    <div
+                        class="bg-darkCard border border-darkBorder rounded-xl p-6 hover:border-gold-500/50 transition-all group">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-gold-500/10 text-gold-400 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-palette"></i>
                         </div>
                         <h3 class="font-title text-lg font-bold text-white mb-2">Aquarela & Oriental</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Manchas de cores fluídas sem contornos rígidos ou o tradicional Irezumi japonês cheio de simbolismos históricos.</p>
+                        <p class="text-xs text-gray-400 leading-relaxed">Manchas de cores fluídas sem contornos rígidos
+                            ou o tradicional Irezumi japonês cheio de simbolismos históricos.</p>
                     </div>
                 </div>
             </div>
@@ -215,17 +259,20 @@
         <!-- SEÇÃO: TATUADORES DA API -->
         <section id="tatuadores" class="py-20 bg-darkBg border-b border-darkBorder">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
+
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                     <div class="space-y-2">
                         <span class="text-gold-400 text-xs font-bold uppercase tracking-widest">Nossa Equipe</span>
                         <h2 class="font-title text-3xl sm:text-4xl font-extrabold">Tatuadores Residentes</h2>
-                        <p class="text-gray-400 text-sm">Conheça os artistas disponíveis em nosso estúdio e seus estilos principais.</p>
+                        <p class="text-gray-400 text-sm">Conheça os artistas disponíveis em nosso estúdio e seus estilos
+                            principais.</p>
                     </div>
 
                     <!-- Busca/Filtro -->
                     <div class="w-full md:w-80 relative">
-                        <input type="text" id="inputBuscaTatuador" oninput="filtrarTatuadores()" placeholder="Buscar por nome ou estilo..." class="w-full bg-darkCard border border-darkBorder rounded-lg px-4 py-2.5 pl-10 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 transition-colors">
+                        <input type="text" id="inputBuscaTatuador" oninput="filtrarTatuadores()"
+                            placeholder="Buscar por nome ou estilo..."
+                            class="w-full bg-darkCard border border-darkBorder rounded-lg px-4 py-2.5 pl-10 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 transition-colors">
                         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-500 text-xs"></i>
                     </div>
                 </div>
@@ -258,59 +305,92 @@
                 <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
                     <span class="text-gold-400 text-xs font-bold uppercase tracking-widest">Reserva de Horários</span>
                     <h2 class="font-title text-3xl sm:text-4xl font-extrabold">Agendar Sua Sessão</h2>
-                    <p class="text-gray-400 text-sm">Escolha o tatuador, defina a data e nos conte a sua ideia de projeto.</p>
+                    <p class="text-gray-400 text-sm">Escolha o tatuador, defina a data e nos conte a sua ideia de
+                        projeto.</p>
                 </div>
 
                 <!-- CARD QUANDO NÃO LOGADO -->
-                <div id="cardAgendamentoBloqueado" class="bg-darkCard border border-gold-500/30 rounded-2xl p-8 sm:p-12 text-center space-y-6 gold-border-glow">
-                    <div class="w-16 h-16 rounded-full bg-gold-500/10 border border-gold-500/40 text-gold-400 flex items-center justify-center text-2xl mx-auto">
+                <div id="cardAgendamentoBloqueado"
+                    class="bg-darkCard border border-gold-500/30 rounded-2xl p-8 sm:p-12 text-center space-y-6 gold-border-glow">
+                    <div
+                        class="w-16 h-16 rounded-full bg-gold-500/10 border border-gold-500/40 text-gold-400 flex items-center justify-center text-2xl mx-auto">
                         <i class="fa-solid fa-lock"></i>
                     </div>
                     <div class="space-y-2 max-w-md mx-auto">
                         <h3 class="font-title text-xl font-bold text-white">Acesso Restrito para Agendamentos</h3>
-                        <p class="text-gray-400 text-sm">A marcação de horários exige que você esteja conectado em uma conta de cliente.</p>
+                        <p class="text-gray-400 text-sm">A marcação de horários exige que você esteja conectado em uma
+                            conta de cliente.</p>
                     </div>
-                    <button onclick="openAuthModal('login')" class="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-bold text-sm px-8 py-3 rounded-lg shadow-lg hover:shadow-gold-500/20 transition-all inline-flex items-center gap-2">
+                    <button onclick="openAuthModal('login')"
+                        class="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-bold text-sm px-8 py-3 rounded-lg shadow-lg hover:shadow-gold-500/20 transition-all inline-flex items-center gap-2">
                         <i class="fa-solid fa-right-to-bracket"></i>
                         <span>Fazer Login para Agendar</span>
                     </button>
                 </div>
 
                 <!-- FORMULÁRIO QUANDO LOGADO -->
-                <div id="formAgendamentoContainer" class="hidden bg-darkCard border border-darkBorder rounded-2xl p-6 sm:p-10 shadow-2xl">
+                <div id="formAgendamentoContainer"
+                    class="hidden bg-darkCard border border-darkBorder rounded-2xl p-6 sm:p-10 shadow-2xl">
                     <form id="formAgendamento" onsubmit="handleAgendarSessao(event)" class="space-y-6">
                         <div class="grid sm:grid-cols-2 gap-6">
                             <!-- Seleção do Tatuador -->
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Tatuador Residente *</label>
-                                <select id="selectTatuador" required class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors">
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Tatuador
+                                    Residente *</label>
+                                <select id="selectTatuador" required
+                                    class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors">
                                     <option value="">Carregando tatuadores...</option>
                                 </select>
                             </div>
 
                             <!-- Data e Hora -->
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Data e Horário Pretendido *</label>
-                                <input type="datetime-local" id="inputDataHora" required class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors">
+                                <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Data e Horário
+                                    Pretendido *</label>
+                                <input type="datetime-local" id="inputDataHora" required
+                                    class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors">
                             </div>
                         </div>
 
                         <!-- Descrição do Projeto -->
                         <div>
-                            <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Descrição do Desenho / Ideia *</label>
-                            <textarea id="inputDescricao" rows="4" required placeholder="Descreva o estilo, tamanho aproximado (cm), local do corpo e referências para a tatuagem..." class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 transition-colors"></textarea>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase mb-2">Descrição do Desenho
+                                / Ideia *</label>
+                            <textarea id="inputDescricao" rows="4" required
+                                placeholder="Descreva o estilo, tamanho aproximado (cm), local do corpo e referências para a tatuagem..."
+                                class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 transition-colors"></textarea>
                         </div>
 
                         <!-- Banner de Feedback / Erro 409 -->
                         <div id="agendamentoFeedback" class="hidden p-4 rounded-lg text-sm border"></div>
 
                         <!-- Submit Button -->
-                        <button type="submit" id="btnSubmitAgendamento" class="w-full bg-gold-500 hover:bg-gold-400 text-black font-bold text-sm py-3.5 rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg">
+                        <button type="submit" id="btnSubmitAgendamento"
+                            class="w-full bg-gold-500 hover:bg-gold-400 text-black font-bold text-sm py-3.5 rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg">
                             <i class="fa-solid fa-calendar-check"></i>
                             <span>Confirmar Agendamento</span>
                         </button>
                     </form>
                 </div>
+
+                <!-- Painel de Gerenciamento do Perfil do Cliente -->
+                <section class="card-panel" id="painelPerfil" style="display: none;">
+                    <h2 class="section-title"><i class="fa-solid fa-user-gear"></i> Meu Perfil & Segurança</h2>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="senhaAtual">Senha Atual:</label>
+                            <input type="password" id="senhaAtual" placeholder="Digite sua senha atual">
+                        </div>
+                        <div class="form-group">
+                            <label for="novaSenha">Nova Senha:</label>
+                            <input type="password" id="novaSenha" placeholder="Digite a nova senha">
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" onclick="alterarSenha()">Salvar Nova Senha</button>
+                    <div id="perfilMsg" class="status-msg"></div>
+                </section>
 
             </div>
         </section>
@@ -323,14 +403,16 @@
                         <span class="text-gold-400 text-xs font-bold uppercase tracking-widest">Painel do Cliente</span>
                         <h2 class="font-title text-3xl sm:text-4xl font-extrabold">Minhas Sessões Marcadas</h2>
                     </div>
-                    <button onclick="carregarMinhasSessoes()" class="text-xs text-gold-400 hover:text-gold-300 flex items-center gap-1">
+                    <button onclick="carregarMinhasSessoes()"
+                        class="text-xs text-gold-400 hover:text-gold-300 flex items-center gap-1">
                         <i class="fa-solid fa-rotate-right"></i> Atualizar
                     </button>
                 </div>
 
                 <!-- Container de Agendamentos do Usuário -->
                 <div id="gridMinhasSessoes" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="col-span-full bg-darkCard border border-darkBorder rounded-xl p-8 text-center text-gray-400">
+                    <div
+                        class="col-span-full bg-darkCard border border-darkBorder rounded-xl p-8 text-center text-gray-400">
                         Faça login para visualizar seus agendamentos ativos.
                     </div>
                 </div>
@@ -341,7 +423,8 @@
 
     <!-- FOOTER -->
     <footer class="bg-darkCard border-t border-darkBorder py-12 text-xs text-gray-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold">
                     <i class="fa-solid fa-dragon"></i>
@@ -358,8 +441,10 @@
     </footer>
 
     <!-- MODAL DE AUTENTICAÇÃO (LOGIN / REGISTRO) -->
-    <div id="modalAuth" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-darkCard border border-darkBorder w-full max-w-md rounded-2xl p-6 sm:p-8 shadow-2xl relative gold-border-glow">
+    <div id="modalAuth"
+        class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-darkCard border border-darkBorder w-full max-w-md rounded-2xl p-6 sm:p-8 shadow-2xl relative gold-border-glow">
             <!-- Close button -->
             <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">
                 <i class="fa-solid fa-xmark"></i>
@@ -367,10 +452,12 @@
 
             <!-- Modal Header / Tabs -->
             <div class="flex border-b border-darkBorder mb-6">
-                <button id="tabLogin" onclick="switchAuthTab('login')" class="flex-1 pb-3 text-sm font-bold border-b-2 border-gold-500 text-gold-400">
+                <button id="tabLogin" onclick="switchAuthTab('login')"
+                    class="flex-1 pb-3 text-sm font-bold border-b-2 border-gold-500 text-gold-400">
                     Entrar (Login)
                 </button>
-                <button id="tabRegistro" onclick="switchAuthTab('registro')" class="flex-1 pb-3 text-sm font-bold border-b-2 border-transparent text-gray-400 hover:text-white">
+                <button id="tabRegistro" onclick="switchAuthTab('registro')"
+                    class="flex-1 pb-3 text-sm font-bold border-b-2 border-transparent text-gray-400 hover:text-white">
                     Criar Conta
                 </button>
             </div>
@@ -379,14 +466,17 @@
             <form id="formLogin" onsubmit="handleLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">E-mail *</label>
-                    <input type="email" id="loginEmail" required value="cliente1@exemplo.com" class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500">
+                    <input type="email" id="loginEmail" required value="cliente1@exemplo.com"
+                        class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Senha *</label>
-                    <input type="password" id="loginSenha" required value="Cliente123!" class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500">
+                    <input type="password" id="loginSenha" required value="Cliente123!"
+                        class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500">
                 </div>
                 <div id="loginFeedback" class="hidden p-3 rounded-lg text-xs border"></div>
-                <button type="submit" id="btnSubmitLogin" class="w-full bg-gold-500 hover:bg-gold-400 text-black font-bold text-sm py-3 rounded-lg transition-all shadow-md">
+                <button type="submit" id="btnSubmitLogin"
+                    class="w-full bg-gold-500 hover:bg-gold-400 text-black font-bold text-sm py-3 rounded-lg transition-all shadow-md">
                     Entrar
                 </button>
             </form>
@@ -395,18 +485,22 @@
             <form id="formRegistro" onsubmit="handleRegistro(event)" class="space-y-4 hidden">
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Nome Completo *</label>
-                    <input type="text" id="registroNome" required placeholder="Seu nome" class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500">
+                    <input type="text" id="registroNome" required placeholder="Seu nome"
+                        class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">E-mail *</label>
-                    <input type="email" id="registroEmail" required placeholder="seu@email.com" class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500">
+                    <input type="email" id="registroEmail" required placeholder="seu@email.com"
+                        class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 uppercase mb-1">Senha *</label>
-                    <input type="password" id="registroSenha" required placeholder="Mínimo 6 caracteres" class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500">
+                    <input type="password" id="registroSenha" required placeholder="Mínimo 6 caracteres"
+                        class="w-full bg-darkBg border border-darkBorder rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-gold-500">
                 </div>
                 <div id="registroFeedback" class="hidden p-3 rounded-lg text-xs border"></div>
-                <button type="submit" id="btnSubmitRegistro" class="w-full bg-gold-500 hover:bg-gold-400 text-black font-bold text-sm py-3 rounded-lg transition-all shadow-md">
+                <button type="submit" id="btnSubmitRegistro"
+                    class="w-full bg-gold-500 hover:bg-gold-400 text-black font-bold text-sm py-3 rounded-lg transition-all shadow-md">
                     Cadastrar e Entrar
                 </button>
             </form>
@@ -414,9 +508,11 @@
     </div>
 
     <!-- MODAL DE DETALHES DO TATUADOR -->
-    <div id="modalTatuador" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="modalTatuador"
+        class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-darkCard border border-darkBorder w-full max-w-lg rounded-2xl p-6 sm:p-8 shadow-2xl relative">
-            <button onclick="closeTatuadorModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">
+            <button onclick="closeTatuadorModal()"
+                class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div id="modalTatuadorConteudo" class="space-y-6">
@@ -427,4 +523,5 @@
 
     <script src="script/script.js"></script>
 </body>
+
 </html>
